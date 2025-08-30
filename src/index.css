@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    line-height: 1.6;
+  }
+}
+
+/* Untuk Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px; /* Lebar scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #e8e8e8; /* Warna background track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #252525; /* Warna thumb */
+  border-radius: 9999px;     /* Biar lebih rounded */
+  border: 2px solid #e8e8e8; /* Tambah border biar thumb keliatan "floating" */
+}
+
+/* Untuk Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #252525 #e8e8e8;
+}
+
+/* Untuk layar sangat besar */
+@media (min-width: 1920px) {
+  .hero-bg-image {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 80%;
+    max-width: 1920px;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounceSlow 3s ease-in-out infinite;
+  }
+  
+  .animate-swing {
+    animation: swing 2s ease-in-out infinite;
+  }
+  
+  .animate-swing-reverse {
+    animation: swingReverse 2s ease-in-out infinite;
+  }
+  
+  .animate-walk {
+    animation: walk 1.5s ease-in-out infinite;
+  }
+  
+  .animate-walk-reverse {
+    animation: walkReverse 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes swing {
+  0%, 100% {
+    transform: rotate(12deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes swingReverse {
+  0%, 100% {
+    transform: rotate(-12deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes walk {
+  0%, 100% {
+    transform: rotate(6deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-10deg) translateY(-5px);
+  }
+}
+
+@keyframes walkReverse {
+  0%, 100% {
+    transform: rotate(-6deg) translateY(0);
+  }
+  50% {
+    transform: rotate(10deg) translateY(-5px);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #667eea, #764ba2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #5a6fd8, #6a4190);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property: transform, opacity, background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Enhanced focus states for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 3D card effect */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.card-3d:hover {
+  transform: rotateY(5deg) rotateX(5deg);
+}
