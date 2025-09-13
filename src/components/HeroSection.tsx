@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const words = ["LET'S", "DIVE", "THROUGH"];
 const fullText = "LET'S DIVE THROUGH";
@@ -80,12 +81,12 @@ export const HeroSection: React.FC = () => {
                   transition={{ duration: 0.8 }}
                   className="mt-8"
                 >
-                  <a
-                    href="/services"
+                  <Link
+                    to="/services"
                     className="inline-block px-8 py-4 bg-gradient-to-r from-[#353535] to-[#252525] hover:from-[#454545] hover:to-[#353535] text-[#e8e8e8] text-lg font-semibold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
                   >
                     Check our services
-                  </a>
+                  </Link>
                 </motion.div>
               )}
             </AnimatePresence>
