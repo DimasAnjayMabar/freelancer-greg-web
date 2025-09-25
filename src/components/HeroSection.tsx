@@ -20,7 +20,7 @@ function CatModel() {
     <primitive
       object={scene}
       scale={isMobile ? 0.12 : 0.2}
-      position={isMobile ? [-0.15, -1, 0] : [0, -1, 0]}
+      position={isMobile ? [-0.4, -1, 0] : [0, -1, 0]}
     />
   );
 }

@@ -32,41 +32,55 @@ const TypeCard = ({ type, index }: { type: PortfolioItem; index: number }) => {
         <h3 className="text-2xl font-bold text-[#e8e8e8] mb-4">{type.title}</h3>
         <p className="text-[#cccccc] mb-6 leading-relaxed">{type.description}</p>
 
-        <div className="flex flex-wrap gap-3">
-          {type.link && (
-            <a
-              href={type.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center bg-[#252525]/80 backdrop-blur-md text-[#e8e8e8] py-2 px-4 rounded-lg hover:bg-[#353535] transition-all duration-300"
-            >
-              <ExternalLink className="w-5 h-5 mr-2" />
-              Visit
-            </a>
-          )}
-          {type.github && (
-            <a
-              href={type.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center bg-[#252525]/80 backdrop-blur-md text-[#e8e8e8] py-2 px-4 rounded-lg hover:bg-[#353535] transition-all duration-300"
-            >
-              <Github className="w-5 h-5 mr-2" />
-              GitHub
-            </a>
-          )}
-          {type.apk && (
-            <a
-              href={type.apk}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center bg-[#252525]/80 backdrop-blur-md text-[#e8e8e8] py-2 px-4 rounded-lg hover:bg-[#353535] transition-all duration-300"
-            >
-              <Download className="w-5 h-5 mr-2" />
-              APK
-            </a>
-          )}
-        </div>
+       <div className="flex flex-col space-y-3">
+            {type.link && (
+              <a
+                href={type.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 
+                           bg-gradient-to-r from-blue-600 to-blue-700 text-white 
+                           font-semibold rounded-full 
+                           hover:from-blue-700 hover:to-blue-800 
+                           transition-all duration-300 hover:scale-105 shadow-lg"
+              >
+                <ExternalLink className="w-5 h-5 mr-2" />
+                View Website
+              </a>
+            )}
+
+            {type.github && (
+              <a
+                href={type.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 
+                           bg-gradient-to-r from-gray-700 to-gray-800 text-white 
+                           font-semibold rounded-full 
+                           hover:from-gray-800 hover:to-gray-900 
+                           transition-all duration-300 hover:scale-105 shadow-lg"
+              >
+                <Github className="w-5 h-5 mr-2" />
+                GitHub
+              </a>
+            )}
+
+            {type.apk && (
+              <a
+                href={type.apk}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 
+                           bg-gradient-to-r from-green-600 to-green-700 text-white 
+                           font-semibold rounded-full 
+                           hover:from-green-700 hover:to-green-800 
+                           transition-all duration-300 hover:scale-105 shadow-lg"
+              >
+                <Download className="w-5 h-5 mr-2" />
+                Download APK
+              </a>
+            )}
+          </div>
       </div>
     </div>
   );
@@ -90,16 +104,6 @@ export const TypesSection = () => {
           >
             LET'S PICK AND CHOOSE
           </h2>
-          <p
-            className="text-xl text-[#cccccc] max-w-3xl mx-auto"
-            style={{
-              transform: isInView ? "none" : "translateY(50px)",
-              opacity: isInView ? 1 : 0,
-              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s",
-            }}
-          >
-            For mobile, please press the card to open the project
-          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
