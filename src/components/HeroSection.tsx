@@ -1,118 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import React, { Suspense, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useMediaQuery } from "react-responsive";
+import { motion } from "framer-motion";
 
-const words = ["LET'S", "DIVE", "THROUGH"];
-const fullText = "LET'S DIVE THROUGH";
+function CatModel() {
+  const { scene, animations } = useGLTF("/glb/an_animated_cat.glb");
+  const { actions } = useAnimations(animations, scene);
 
-export const HeroSection: React.FC = () => {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [showFullText, setShowFullText] = useState(false);
-  const [showCTA, setShowCTA] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
-    if (showFullText) return;
-
-    const timeouts = [900, 1200, 900];
-
-    const timeout = setTimeout(() => {
-      if (currentWordIndex < words.length - 1) {
-        setCurrentWordIndex((prev) => prev + 1);
-      } else {
-        // Semua kata selesai, lalu full text muncul
-        setTimeout(() => setShowFullText(true), 500);
-      }
-    }, timeouts[currentWordIndex]);
-
-    return () => clearTimeout(timeout);
-  }, [currentWordIndex, showFullText]);
-
-  // Trigger CTA setelah fullText selesai fade in
-  useEffect(() => {
-    if (showFullText) {
-      const ctaTimeout = setTimeout(() => setShowCTA(true), 1200); 
-      return () => clearTimeout(ctaTimeout);
+    if (actions && Object.keys(actions).length > 0) {
+      actions[Object.keys(actions)[0]]?.play();
     }
-  }, [showFullText]);
+  }, [actions]);
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-[#252525] to-[#1a1a1a] overflow-hidden flex items-center justify-center px-6">
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-7xl">
-        
-        {/* Teks kiri */}
-        <div className="flex-1 flex justify-center md:justify-start mb-12 md:mb-0">
-          <div className="text-left leading-tight">
-            <AnimatePresence mode="wait">
-              {!showFullText ? (
-                <motion.span
-                  key={currentWordIndex}
-                  initial={{ y: 40, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -40, opacity: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    ease: [0.16, 0.77, 0.47, 0.97],
-                  }}
-                  className="block text-6xl md:text-8xl font-extrabold text-[#e8e8e8]"
-                >
-                  {words[currentWordIndex]}
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="full"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1.2 }}
-                  className="block text-6xl md:text-8xl font-extrabold text-[#e8e8e8]"
-                >
-                  {fullText}
-                </motion.span>
-              )}
-            </AnimatePresence>
+    <primitive
+      object={scene}
+      scale={isMobile ? 0.12 : 0.2}
+      position={isMobile ? [-0.15, -1, 0] : [0, -1, 0]}
+    />
+  );
+}
 
-            {/* CTA Button fade-in setelah animasi selesai */}
-            <AnimatePresence>
-              {showCTA && (
-                <motion.div
-                  key="cta-button"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.8 }}
-                  className="mt-8"
-                >
-                  <Link
-                    to="/services"
-                    className="inline-block px-8 py-4 bg-gradient-to-r from-[#353535] to-[#252525] hover:from-[#454545] hover:to-[#353535] text-[#e8e8e8] text-lg font-semibold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
-                  >
-                    Check our services
-                  </Link>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Gambar kanan super besar */}
-        <div className="flex-1 flex justify-center md:justify-end h-[60vh] md:h-[80vh] group">
-          <div className="w-full h-full rounded-3xl overflow-hidden bg-[#252525] shadow-2xl flex items-center justify-center">
-            <motion.img
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.5 }}
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-              alt="Professional business team"
-              className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-in-out"
-            />
-          </div>
-        </div>
+export const HeroSection: React.FC = () => {
+  return (
+    <section className="relative min-h-screen bg-gradient-to-br from-[#252525] to-[#1a1a1a] overflow-hidden">
+      {/* GLB background */}
+      <div className="absolute inset-0">
+        <Canvas camera={{ position: [0, 1, 6], fov: 50 }} className="w-full h-full">
+          <ambientLight intensity={0.8} />
+          <directionalLight position={[3, 3, 3]} intensity={1} />
+          <Suspense fallback={null}>
+            <CatModel />
+          </Suspense>
+        </Canvas>
       </div>
 
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#353535] rounded-full opacity-10 animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-32 h-32 bg-[#353535] rounded-full opacity-5 animate-pulse delay-1000"></div>
-        <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-[#353535] rounded-full opacity-7 animate-pulse delay-500"></div>
+      {/* Overlay content */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center pt-[60vh] px-6">
+        
+        {/* Judul dengan animasi fade-in */}
+        <motion.h1
+          className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white drop-shadow-lg mb-10"
+          style={{ textShadow: "3px 3px 10px rgba(0,0,0,0.8)" }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          LET&apos;S DIVE THROUGH
+        </motion.h1>
+
+        {/* Animated scroll arrow */}
+        <motion.div
+          className="absolute bottom-10 flex justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+            className="text-white"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-10 w-10"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

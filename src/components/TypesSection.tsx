@@ -1,11 +1,12 @@
-import React, { useRef } from 'react';
-import { useInView } from 'framer-motion';
-import { Coffee, ShoppingBag, ExternalLink } from 'lucide-react';
+import React, { useRef } from "react";
+import { useInView } from "framer-motion";
+import { ExternalLink, Github, Download } from "lucide-react";
+import { websiteTypes, PortfolioItem } from "./PortfolioData";
 
-const TypeCard = ({ type, index }) => {
-  const ref = useRef(null);
+const TypeCard = ({ type, index }: { type: PortfolioItem; index: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  
+
   return (
     <div
       ref={ref}
@@ -14,47 +15,58 @@ const TypeCard = ({ type, index }) => {
       style={{
         transform: isInView ? "none" : "translateY(50px)",
         opacity: isInView ? 1 : 0,
-        transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${index * 200}ms`
+        transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${index * 200}ms`,
       }}
     >
-      <div className="relative overflow-hidden">
-        <img
-          src={type.image}
-          alt={type.title}
-          className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="absolute bottom-4 left-4 right-4">
-            <button className="w-full bg-[#252525]/80 backdrop-blur-md text-[#e8e8e8] py-3 rounded-lg hover:bg-[#353535] transition-all duration-300 flex items-center justify-center">
-              <ExternalLink className="w-5 h-5 mr-2" />
-              Check it out →
-            </button>
-          </div>
+      {type.image && (
+        <div className="relative overflow-hidden">
+          <img
+            src={type.image}
+            alt={type.title}
+            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+          />
         </div>
-      </div>
-      
+      )}
+
       <div className="p-8">
-        <div className="flex items-center mb-6">
-          <div className="w-12 h-12 bg-gradient-to-br from-[#353535] to-[#252525] rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
-            <type.icon className="w-6 h-6 text-[#e8e8e8]" />
-          </div>
-          <h3 className="text-2xl font-bold text-[#e8e8e8]">{type.title}</h3>
-        </div>
-        
+        <h3 className="text-2xl font-bold text-[#e8e8e8] mb-4">{type.title}</h3>
         <p className="text-[#cccccc] mb-6 leading-relaxed">{type.description}</p>
-        
-        <ul className="space-y-3">
-          {type.features.map((feature, index) => (
-            <li key={index} className="flex items-center text-[#e8e8e8]">
-              <div className="w-2 h-2 bg-gradient-to-r from-[#e8e8e8] to-[#cccccc] rounded-full mr-3"></div>
-              {feature}
-            </li>
-          ))}
-        </ul>
-        
-        <button className="mt-8 w-full bg-gradient-to-r from-[#353535] to-[#252525] text-[#e8e8e8] py-3 rounded-xl font-semibold hover:from-[#454545] hover:to-[#353535] transition-all duration-300 hover:scale-105 shadow-lg">
-          Check it out →
-        </button>
+
+        <div className="flex flex-wrap gap-3">
+          {type.link && (
+            <a
+              href={type.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center bg-[#252525]/80 backdrop-blur-md text-[#e8e8e8] py-2 px-4 rounded-lg hover:bg-[#353535] transition-all duration-300"
+            >
+              <ExternalLink className="w-5 h-5 mr-2" />
+              Visit
+            </a>
+          )}
+          {type.github && (
+            <a
+              href={type.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center bg-[#252525]/80 backdrop-blur-md text-[#e8e8e8] py-2 px-4 rounded-lg hover:bg-[#353535] transition-all duration-300"
+            >
+              <Github className="w-5 h-5 mr-2" />
+              GitHub
+            </a>
+          )}
+          {type.apk && (
+            <a
+              href={type.apk}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center bg-[#252525]/80 backdrop-blur-md text-[#e8e8e8] py-2 px-4 rounded-lg hover:bg-[#353535] transition-all duration-300"
+            >
+              <Download className="w-5 h-5 mr-2" />
+              APK
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -64,35 +76,16 @@ export const TypesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const websiteTypes = [
-    {
-      id: 1,
-      title: "CAFE WEBSITE",
-      icon: Coffee,
-      image: "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Warm and inviting designs for restaurants and cafes",
-      features: ["Menu showcase", "Online reservations", "Location finder", "Social media integration"]
-    },
-    {
-      id: 2,
-      title: "ECOMMERCE WEBSITE",
-      icon: ShoppingBag,
-      image: "https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Powerful online stores that drive sales",
-      features: ["Product catalog", "Shopping cart", "Payment integration", "Inventory management"]
-    }
-  ];
-
   return (
     <section ref={ref} className="py-20 bg-gradient-to-br from-[#252525] to-[#1a1a1a]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full min-h-screen mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
           <h2
             className="text-4xl md:text-6xl font-bold text-[#e8e8e8] mb-8"
             style={{
               transform: isInView ? "none" : "translateY(50px)",
               opacity: isInView ? 1 : 0,
-              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.1s"
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.1s",
             }}
           >
             LET'S PICK AND CHOOSE
@@ -102,10 +95,10 @@ export const TypesSection = () => {
             style={{
               transform: isInView ? "none" : "translateY(50px)",
               opacity: isInView ? 1 : 0,
-              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s"
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s",
             }}
           >
-            Choose from our specialized website types, each crafted with industry-specific features and design elements.
+            For mobile, please press the card to open the project
           </p>
         </div>
 

@@ -23,8 +23,7 @@ export const Navigation: React.FC<NavigationProps> = ({ isTransparent = false })
 
   const navItems = [
     { id: 'home', path: '/', label: 'HOME' },
-    { id: 'types', path: '/services', label: 'SERVICES' },
-    { id: 'pricing', path: '/pricing', label: 'PRICING' }
+    { id: 'types', path: '/services', label: 'PORTFOLIO' }
   ];
 
   // Fungsi untuk menentukan apakah item aktif berdasarkan path
@@ -53,7 +52,7 @@ export const Navigation: React.FC<NavigationProps> = ({ isTransparent = false })
           to="/" 
           className={`font-bold text-xl ${textColorClass} hover:opacity-80 transition-opacity duration-300`}
         >
-          FREELANCER_GREG
+          PORTFOLIO
         </Link>
 
         {/* Desktop Navigation */}

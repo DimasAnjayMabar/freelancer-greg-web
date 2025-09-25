@@ -51,7 +51,7 @@ export const BusinessSection = () => {
             }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+              src="/png/profile.jpg" 
               alt="Professional business meeting" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
             />
@@ -67,7 +67,7 @@ export const BusinessSection = () => {
                 transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.1s"
               }}
             >
-              READY TO MAKE YOUR BUSINESS PROFESSIONAL
+              CRAFTING DIGITAL EXPERIENCE
             </h2>
             <p 
               className="text-lg md:text-xl text-[#e8e8e8] leading-relaxed mb-8"
@@ -77,38 +77,107 @@ export const BusinessSection = () => {
                 transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s"
               }}
             >
-              Ready to turn your business into a professional online presence that drives results? 
-              Together, we'll create a website that's engaging, easy to use, and powerful enough 
-              to boost your performance and attract new customers.
+              I’m an IT engineer specializing in designing and developing websites and mobile applications. My primary focus is backend development, but I am also comfortable working across the full stack when needed.
             </p>
+
+            <h6 
+              className="text-4l md:text-5l lg:text-6l font-bold text-[#e8e8e8] mb-8"
+              style={{
+                transform: isInView ? "none" : "translateY(50px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.1s"
+              }}
+            >
+              SKILLS & COMPETENCIES
+            </h6>
             
             {/* Additional Info */}
-            <div className="space-y-6">  
-              <FeatureItem 
-                icon={
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#e8e8e8] group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                }
-                title="Lightning Fast"
-                description="Optimized for speed and performance across all devices"
-                delay={300}
-              />
-              
-              <FeatureItem 
-                icon={
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#e8e8e8] group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                }
-                title="Scalable Solutions"
-                description="Grow your business without technical limitations"
-                delay={400}
-              />
-            </div>
+           <div className="space-y-6">  
+            {/* Backend Development */}
+            <FeatureItem 
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6 text-[#e8e8e8] group-hover:scale-110 transition-transform duration-300" 
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  {/* Server stack */}
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+              }
+              title="Backend Development"
+              description="Node-JS, PHP, Supabase functions"
+              delay={300}
+            />
+
+            {/* Database Development */}
+            <FeatureItem 
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6 text-[#e8e8e8] group-hover:scale-110 transition-transform duration-300" 
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  {/* Database cylinder */}
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M12 4c4.418 0 8 1.343 8 3s-3.582 3-8 3-8-1.343-8-3 3.582-3 8-3z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M4 7v10c0 1.657 3.582 3 8 3s8-1.343 8-3V7" />
+                </svg>
+              }
+              title="Database Development"
+              description="SQL, Prisma ORM, and Eloquent ORM (Laravel)"
+              delay={400}
+            />
+
+            {/* Frontend Development */}
+            <FeatureItem 
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6 text-[#e8e8e8] group-hover:scale-110 transition-transform duration-300" 
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  {/* Code brackets */}
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+                </svg>
+              }
+              title="Frontend Development"
+              description="React-JS, Laravel, Flutter"
+              delay={400}
+            />
+
+            {/* Basic Computer Hardware */}
+            <FeatureItem 
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6 text-[#e8e8e8] group-hover:scale-110 transition-transform duration-300" 
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  {/* Chip */}
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M9 3h6M9 21h6M3 9v6M21 9v6M7 7h10v10H7V7z" />
+                </svg>
+              }
+              title="Basic Computer Hardware"
+              description="Knowledge of basic computer hardware for daily life usage"
+              delay={400}
+            />
+
+            {/* Basic Computer Networking */}
+            <FeatureItem 
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6 text-[#e8e8e8] group-hover:scale-110 transition-transform duration-300" 
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  {/* Network nodes */}
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M12 6V4m0 16v-2m8-6h-2M6 12H4m13.656-5.657l-1.414 1.414M7.757 16.243l-1.414 1.414m12.02 0l-1.414-1.414M7.757 7.757L6.343 6.343" />
+                </svg>
+              }
+              title="Basic Computer Networking"
+              description="Knowledge of basic computer network for local network purposes such as Cisco and Mikrotik routers and switches"
+              delay={400}
+            />
+          </div>
             
             {/* CTA Button */}
-            <div
+            {/* <div
               style={{
                 transform: isInView ? "none" : "translateY(50px)",
                 opacity: isInView ? 1 : 0,
@@ -118,7 +187,7 @@ export const BusinessSection = () => {
               <button className="mt-8 bg-gradient-to-r from-[#353535] to-[#252525] hover:from-[#454545] hover:to-[#353535] text-[#e8e8e8] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
                 Get Started Today
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
