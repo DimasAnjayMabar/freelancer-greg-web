@@ -33,4 +33,12 @@ export const websiteTypes: PortfolioItem[] = [
     image: "/png/agusplastik.png",
     link: "https://agusplastikapp.vercel.app/"
   },
+  {
+    id: 4,
+    title: "Simple Cooperation app",
+    description: "A demo for cooperation app to help cooperation staff manage their members. try to use username = greg and password = 123456 for login. profile is not working because using vercel's static page",
+    image: "/png/koperasi.png",
+    link: "https://koperasiapp-qskb4jcnq-gregs-projects-44e86848.vercel.app",
+    github: "https://github.com/DimasAnjayMabar/koperasi.git"
+  },
 ];
