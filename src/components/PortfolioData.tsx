@@ -36,7 +36,7 @@ export const websiteTypes: PortfolioItem[] = [
   {
     id: 4,
     title: "Simple Cooperation app",
-    description: "A demo for cooperation app to help cooperation staff manage their members. \ntry to use username = greg and password = 123456 for login. \nprofile is not working because using vercel's static page",
+    description: "A demo for cooperation app to help cooperation staff manage their members. \nTry to use username = greg and password = 123456 for login. \nProfile won't load because using vercel's static page, db only saves relative path, not blob",
     image: "/png/koperasi.png",
     link: "https://koperasiapp-qskb4jcnq-gregs-projects-44e86848.vercel.app",
     github: "https://github.com/DimasAnjayMabar/koperasi.git"
