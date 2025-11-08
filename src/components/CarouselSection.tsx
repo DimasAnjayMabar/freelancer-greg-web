@@ -10,10 +10,10 @@ const CarouselItem = ({ item, isActive, index }) => {
   return (
     <div
       ref={ref}
-      className={`flex-shrink-0 w-80 transition-all duration-700 ease-out ${
+      className={`flex-shrink-0 w-full max-w-md sm:max-w-lg md:max-w-xl transition-all duration-700 ease-out ${
         isActive
-          ? "scale-95 z-10 h-auto transform-gpu" // card tengah lebih kecil
-          : "scale-110 opacity-80 h-auto transform-gpu" // card kiri & kanan lebih besar
+          ? "scale-95 z-10 transform-gpu"
+          : "scale-110 opacity-80 transform-gpu"
       }`}
       style={{
         transform: isInView ? "none" : "translateY(50px)",
@@ -22,17 +22,17 @@ const CarouselItem = ({ item, isActive, index }) => {
       }}
     >
       <div
-        className={`bg-[#252525] rounded-3xl overflow-hidden shadow-2xl h-full transition-all duration-700 ease-out ${
+        className={`bg-[#252525] rounded-3xl overflow-hidden shadow-2xl transition-all duration-700 ease-out ${
           isActive ? "border-2 border-[#e8e8e8]/20" : ""
         }`}
       >
         {/* Preview */}
         <div className="relative h-48">
           <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-48 object-cover rounded-t-3xl"
-            />
+            src={item.image}
+            alt={item.title}
+            className="w-full h-48 object-cover rounded-t-3xl"
+          />
         </div>
 
         {/* Konten bawah */}
@@ -40,13 +40,15 @@ const CarouselItem = ({ item, isActive, index }) => {
           {/* Judul */}
           <h3 className="text-xl font-bold text-[#e8e8e8]">{item.title}</h3>
 
-          {/* Deskripsi */}
-          <p className="text-[#cccccc] text-sm leading-relaxed">
-            {item.description}
-          </p>
+          {/* Deskripsi dengan scroll jika terlalu panjang */}
+          <div className="max-h-32 overflow-y-auto pr-2 custom-scrollbar">
+            <p className="text-[#cccccc] text-sm leading-relaxed whitespace-pre-line">
+              {item.description}
+            </p>
+          </div>
 
           {/* Tombol-tombol */}
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col space-y-3 mt-auto">
             {item.link && (
               <a
                 href={item.link}
@@ -117,7 +119,7 @@ export const CarouselSection = () => {
         setCurrentIndex((prev) => (prev + 1) % portfolioItems.length);
         setTimeout(() => setIsTransitioning(false), 700);
       }, 100);
-    }, 15000);
+    }, 60000);
     return () => clearInterval(interval);
   }, [portfolioItems.length]);
 
@@ -166,7 +168,8 @@ export const CarouselSection = () => {
             </p>
         </div>
 
-        <div className="flex justify-center items-center h-[500px]">
+        {/* Container carousel dengan tinggi dinamis */}
+        <div className="flex justify-center items-start min-h-[500px] lg:min-h-[550px] py-4">
           <div className="flex items-center justify-center space-x-6 lg:space-x-8">
             {visibleItems.map((item, index) => (
               <CarouselItem 
@@ -179,7 +182,8 @@ export const CarouselSection = () => {
           </div>
         </div>
 
-        <div className="flex justify-center mt-12 space-x-3">
+        {/* Dot navigasi dengan margin atas yang cukup */}
+        <div className="flex justify-center mt-16 space-x-3">
           {portfolioItems.map((_, index) => (
             <button
               key={index}
@@ -244,6 +248,24 @@ export const CarouselSection = () => {
             </a>
           </div>
         </div>
+
+        {/* CSS untuk scrollbar kustom */}
+        <style jsx>{`
+          .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-track {
+            background: #333;
+            border-radius: 10px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #666;
+            border-radius: 10px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #888;
+          }
+        `}</style>
     </section>
   );
 };

@@ -30,9 +30,11 @@ const TypeCard = ({ type, index }: { type: PortfolioItem; index: number }) => {
 
       <div className="p-8">
         <h3 className="text-2xl font-bold text-[#e8e8e8] mb-4">{type.title}</h3>
-        <p className="text-[#cccccc] mb-6 leading-relaxed">{type.description}</p>
+        <p className="text-[#cccccc] text-sm leading-relaxed whitespace-pre-line">
+              {type.description}
+        </p>
 
-       <div className="flex flex-col space-y-3">
+       <div className="flex flex-col space-y-3 mt-5">
             {type.link && (
               <a
                 href={type.link}
