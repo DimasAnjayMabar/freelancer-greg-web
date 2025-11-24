@@ -6,5 +6,7 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react'],
+    force: true,
+    include: ["@react-three/drei", "@react-three/fiber", "three"]
   },
 });

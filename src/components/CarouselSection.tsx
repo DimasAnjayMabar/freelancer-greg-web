@@ -250,7 +250,7 @@ export const CarouselSection = () => {
         </div>
 
         {/* CSS untuk scrollbar kustom */}
-        <style jsx>{`
+        <style>{`
           .custom-scrollbar::-webkit-scrollbar {
             width: 4px;
           }

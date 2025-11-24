@@ -4,8 +4,8 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import { motion } from "framer-motion";
 
-function CatModel() {
-  const { scene, animations } = useGLTF("/glb/an_animated_cat.glb");
+function Model() {
+  const { scene, animations } = useGLTF("/glb/placeholder-cube_5.glb");
   const { actions } = useAnimations(animations, scene);
 
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -19,7 +19,7 @@ function CatModel() {
   return (
     <primitive
       object={scene}
-      scale={isMobile ? 0.12 : 0.2}
+      scale={isMobile ? 0.2 : 0.2}
       position={isMobile ? [-0.4, -1, 0] : [0, -1, 0]}
     />
   );
@@ -34,7 +34,7 @@ export const HeroSection: React.FC = () => {
           <ambientLight intensity={0.8} />
           <directionalLight position={[3, 3, 3]} intensity={1} />
           <Suspense fallback={null}>
-            <CatModel />
+            <Model />
           </Suspense>
         </Canvas>
       </div>
