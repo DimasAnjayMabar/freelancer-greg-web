@@ -1,46 +1,29 @@
-import React, { Suspense, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
-import { useGLTF, useAnimations } from "@react-three/drei";
-import { useMediaQuery } from "react-responsive";
+import React from "react";
 import { motion } from "framer-motion";
-
-function Model() {
-  const { scene, animations } = useGLTF("/glb/placeholder-cube_5.glb");
-  const { actions } = useAnimations(animations, scene);
-
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-
-  useEffect(() => {
-    if (actions && Object.keys(actions).length > 0) {
-      actions[Object.keys(actions)[0]]?.play();
-    }
-  }, [actions]);
-
-  return (
-    <primitive
-      object={scene}
-      scale={isMobile ? 0.2 : 0.2}
-      position={isMobile ? [-0.4, -1, 0] : [0, -1, 0]}
-    />
-  );
-}
+import FloatingLines from './FloatingLines';
 
 export const HeroSection: React.FC = () => {
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-[#252525] to-[#1a1a1a] overflow-hidden">
-      {/* GLB background */}
+      {/* FloatingLines background */}
       <div className="absolute inset-0">
-        <Canvas camera={{ position: [0, 1, 6], fov: 50 }} className="w-full h-full">
-          <ambientLight intensity={0.8} />
-          <directionalLight position={[3, 3, 3]} intensity={1} />
-          <Suspense fallback={null}>
-            <Model />
-          </Suspense>
-        </Canvas>
+        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+          <FloatingLines 
+            enabledWaves={['top', 'middle', 'bottom']}
+            // Array - specify line count per wave; Number - same count for all waves
+            lineCount={[10, 15, 20]}
+            // Array - specify line distance per wave; Number - same distance for all waves
+            lineDistance={[8, 6, 4]}
+            bendRadius={5.0}
+            bendStrength={-0.5}
+            interactive={true}
+            parallax={true}
+          />
+        </div>
       </div>
 
       {/* Overlay content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center pt-[60vh] px-6">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-6 pointer-events-none">
         
         {/* Judul dengan animasi fade-in */}
         <motion.h1
@@ -55,7 +38,7 @@ export const HeroSection: React.FC = () => {
 
         {/* Animated scroll arrow */}
         <motion.div
-          className="absolute bottom-10 flex justify-center"
+          className="absolute bottom-10 flex justify-center pointer-events-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
