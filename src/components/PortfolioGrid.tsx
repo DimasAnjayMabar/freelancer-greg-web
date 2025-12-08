@@ -29,7 +29,7 @@ const websiteTypes: PortfolioItem[] = [
     image: "/png/PIGGI.png",
     link: "https://piggiapp.vercel.app/",
     github: "https://github.com/DimasAnjayMabar/fund-divider.git",
-    apk: "https://drive.google.com/file/d/1eCPd441-f3s8-Ugmu5SVMY_XHwFKhH8n/view?usp=sharing"
+    apk: "https://drive.google.com/file/d/1DjIvcel1S31ATc_TtiogMdIl3ZiLkATn/view?usp=sharing"
   },
   {
     id: 3,
