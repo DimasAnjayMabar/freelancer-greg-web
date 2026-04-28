@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import { BusinessSection } from './components/BusinessSection';
-import { PricingSection } from './components/PricingSection';
 import PortfolioBentoGrid from './components/PortfolioGrid';
 import { CarouselSection } from './components/CarouselSection';
 
@@ -34,15 +33,9 @@ function App() {
             </div>
           } />
           
-          <Route path="/services" element={
+          <Route path="/portfolio" element={
             <div id="services">
               <PortfolioBentoGrid />
-            </div>
-          } />
-          
-          <Route path="/pricing" element={
-            <div id="pricing">
-              <PricingSection />
             </div>
           } />
         </Routes>

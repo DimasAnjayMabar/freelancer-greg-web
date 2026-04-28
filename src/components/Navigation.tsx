@@ -23,7 +23,7 @@ export const Navigation: React.FC<NavigationProps> = ({ isTransparent = false })
 
   const navItems = [
     { id: 'home', path: '/', label: 'HOME' },
-    { id: 'types', path: '/services', label: 'PORTFOLIO' }
+    { id: 'types', path: '/portfolio', label: 'PORTFOLIO' }
   ];
 
   // Fungsi untuk menentukan apakah item aktif berdasarkan path

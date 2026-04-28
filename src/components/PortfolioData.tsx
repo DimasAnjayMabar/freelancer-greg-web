@@ -35,23 +35,18 @@ export const websiteTypes: PortfolioItem[] = [
   },
   {
     id: 4,
-    title: "Simple Cooperation app (Important : Scroll to Read Description Below)",
-    description: 
-      "A demo for cooperation app to help cooperation staff manage their members. To operate the app:\n" +
-      "- Add /staff behind url to go to admin page\n" +
-      "- To try existing account, try username = admin for staff page, or username = user for user page. Both with the same password = 123456. You can also register an account yourself with your own email\n" +
-      "- Profile wont load because vercel's static page and website is built to store image with only relative path not blob inside db. I suggest dont add a profile when register new account for staff or user\n" + 
-      "- If the page automatically log you in and causing fetch data error, try to signout and login again using the right credential",
-    image: "/png/koperasi.png",
-    link: "https://koperasiapp-qskb4jcnq-gregs-projects-44e86848.vercel.app",
-    github: "https://github.com/DimasAnjayMabar/koperasi.git"
-  },
-  {
-    id: 5,
     title: "Disney Image Converter",
     description: 
       "Local image converter using stable diffuser model",
     image: "/png/disney.jpeg",
     github: "https://github.com/DimasAnjayMabar/disney-image-converter.git"
+  }, 
+    {
+    id: 5,
+    title: "Project Agribot",
+    description: 
+      "RAG chatbot for local farmers",
+    image: "/png/leaf.png",
+    github: "https://github.com/DimasAnjayMabar/agribot.git"
   }
 ];
